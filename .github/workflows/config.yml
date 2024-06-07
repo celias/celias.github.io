@@ -25,24 +25,24 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
       # Generate entry file
-      - name: Generate index.html (example for basic HTML)
-        run: |
-          echo '<!DOCTYPE html>' > index.html
-          echo '<html lang="en">' >> index.html
-          echo '<head>' >> index.html
-          echo '  <meta charset="UTF-8">' >> index.html
-          echo '  <title>My Website</title>' >> index.html
-          echo '</head>' >> index.html
-          echo '<body>' >> index.html
-          echo '  <h1>Welcome to my website!</h1>' >> index.html
-          echo '</body>' >> index.html
-          echo '</html>' >> index.html
+      # - name: Generate index.html (example for basic HTML)
+      #   run: |
+      #     echo '<!DOCTYPE html>' > index.html
+      #     echo '<html lang="en">' >> index.html
+      #     echo '<head>' >> index.html
+      #     echo '  <meta charset="UTF-8">' >> index.html
+      #     echo '  <title>My Website</title>' >> index.html
+      #     echo '</head>' >> index.html
+      #     echo '<body>' >> index.html
+      #     echo '  <h1>Welcome to my website!</h1>' >> index.html
+      #     echo '</body>' >> index.html
+      #     echo '</html>' >> index.html
 
       # Upload generated artifact
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3.0.1
         with:
-          path: ./src # Upload the entire repository (including the generated index.html)
+          path: ./src # Upload the entire repository
   deploy:
     runs-on: ubuntu-latest
     needs: build

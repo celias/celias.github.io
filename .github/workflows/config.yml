@@ -6,9 +6,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -25,9 +25,29 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
+      # Generate entry file
+      - name: Generate index.html (example for basic HTML)
+        run: |
+          echo '<!DOCTYPE html>' > index.html
+          echo '<html lang="en">' >> index.html
+          echo '<head>' >> index.html
+          echo '  <meta charset="UTF-8">' >> index.html
+          echo '  <title>My Website</title>' >> index.html
+          echo '</head>' >> index.html
+          echo '<body>' >> index.html
+          echo '  <h1>Welcome to my website!</h1>' >> index.html
+          echo '</body>' >> index.html
+          echo '</html>' >> index.html
+
+      # Upload generated artifact
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v3.0.1
+        with:
+          path: ./src # Upload the entire repository (including the generated index.html)
+
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
-        if: github.ref == 'refs/heads/main'  # Deploy only on pushes to main
+        uses: actions/deploy-pages@v4.0.5
+        if: github.ref == 'refs/heads/main' # Deploy only on pushes to main
         env:
           GITHUB_TOKEN: ${{ secrets.TRIGGER_WORKFLOW }}
 

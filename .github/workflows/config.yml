@@ -49,7 +49,7 @@ jobs:
         uses: actions/deploy-pages@v4.0.5
         if: github.ref == 'refs/heads/main' # Deploy only on pushes to main
         env:
-          GITHUB_TOKEN: ${{ secrets.TRIGGER_WORKFLOW }}
+          TRIGGER_WORKFLOW: ${{ secrets.TRIGGER_WORKFLOW }}
 
       # Runs a single command using the runners shell
       # - name: Run a one-line script

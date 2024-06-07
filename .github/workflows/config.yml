@@ -47,10 +47,10 @@ jobs:
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4.0.5
-        if: github.ref == 'refs/heads/main' # Deploy only on pushes to main
-        env:
-          id-token: ${{ secrets.GITHUB_TOKEN }}
-          permissions: write
+        if: github.ref == 'refs/heads/main'
+        # env:
+        # id-token:
+        #   permissions: write
 
       # Runs a single command using the runners shell
       # - name: Run a one-line script
